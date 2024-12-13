@@ -1,0 +1,19 @@
+from task1.models import Buyer
+Buyer.objects.create(name='Tor', balance=1272.5, age =27)
+Buyer.objects.create(name='Gor', balance=15489.77, age =37)
+Buyer.objects.create(name='Frog', balance=100, age =17)
+
+from task1.models import Game
+Game.objects.create(title='Cyberpunk 2077', cost=5500, size=32, description='cyberpunk', age_limited=True)
+Game.objects.create(title='Mario', cost=3200, size=17, description='Andventures')
+Game.objects.create(title='Takes in two', cost=4300, size=20, description='Cooperative')
+Game.objects.filter(title='Takes in two').update(age_limited=True)
+Game.objects.count()
+
+from task1.models import Game, Buyer
+b1 = Buyer.objects.get(id=1)
+b2 = Buyer.objects.get(id=2)
+b3 = Buyer.objects.get(id=3)
+Game.objects.get(id=1).buyer.set((b1, b2))
+Game.objects.get(id=2).buyer.set((b1, b2, b3))
+Game.objects.get(id=2).buyer.set((b2, ))
