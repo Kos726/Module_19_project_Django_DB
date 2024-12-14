@@ -1,0 +1,28 @@
+<!-- подключаем шаблон страницы -->
+{% extends 'first_task/menu.html' %}
+
+<!-- Блок заглавия интернет страницы -->
+{% block title %}
+             {{ block.super }}
+{% endblock %}
+
+<!-- Блок заголовка страницы -->
+{% block pagename %}
+            {{ block.super }}
+{% endblock %}
+
+<!-- Блок меню -->
+{% block menu %}
+                    <font size="6">
+                    {{ block.super }}
+                    </font>
+{% endblock %}
+
+
+{% block content %}
+
+<button onclick="document.location='/'">
+                Регистрация
+            </button>
+
+{% endblock %}
