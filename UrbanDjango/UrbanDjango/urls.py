@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from task1.views import platform, products, shopping_cart
 from task1.views import sign_up_by_html, sign_up_by_django
+from task1.views import news_page
 
 
 urlpatterns = [
@@ -27,4 +28,6 @@ urlpatterns = [
     path('cart/', shopping_cart),
     path('', sign_up_by_html),
     path('django_sign_up/', sign_up_by_django),
+    path('platform/news/', news_page),
+
 ]

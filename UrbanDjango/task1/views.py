@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.http import HttpResponse
 from .forms import UserRegister
 from .models import *
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -150,3 +151,31 @@ def sign_up_by_django(request):
     form_ = {'form': form}
     context = {**form_, **info_}
     return render(request, 'first_task/registration_page.html', context)
+
+
+def news_page(request):
+    title = "Новости"
+    button_back = "Вернуться обратно"
+
+    # получаем все посты
+    news = News.objects.all()
+
+    # создаем пагинатор
+    paginator = Paginator(news, 1)  # 10 постов на странице
+
+    # получаем номер страницы, на которую переходит пользователь
+    page_number = request.GET.get('page')
+
+    # получаем посты для текущей страницы
+    page_news = paginator.get_page(page_number)
+
+    # передаем контекст в шаблон
+
+    page_form = {
+        'title': title,
+        'button_back': button_back,
+    }
+
+    page_news_ = {'page_news': page_news}
+    context = {**page_form, **page_news_}
+    return render(request, 'first_task/news.html', context)
